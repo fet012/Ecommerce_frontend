@@ -9,7 +9,7 @@ const LoadingComponent = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <ReactLoading type="spin" color="blue" />
+      <ReactLoading type="spin" color="#BFDBFE" />
     </div>
   );
 };

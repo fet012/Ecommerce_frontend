@@ -13,7 +13,9 @@ const initialState = {
   userAuth: {
     loading: false,
     error: null,
-    userInfo: {},
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
   },
 };
 
@@ -75,6 +77,7 @@ const userSlice = createSlice({
     builder.addCase(loginUserAction.rejected, (state, action) => {
       state.userAuth.error = action.payload;
       state.userAuth.loading = false;
+      
     });
 
     // REGISTER

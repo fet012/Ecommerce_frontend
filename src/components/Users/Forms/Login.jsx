@@ -4,8 +4,10 @@ import { loginUserAction } from "../../../redux/slice/users/userSlice";
 import Swal from "sweetalert2";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   // DISPATCH
   const dispatch = useDispatch();
 
@@ -34,6 +36,15 @@ const Login = () => {
   );
 
 
+ useEffect(() => {
+  if (userInfo) {
+    if (userInfo?.userFound?.isAdmin) {
+      navigate("/admin"); 
+    } else {
+      navigate("/customer-profile"); 
+    }
+  }
+}, [userInfo, navigate]);
 
   return (
     <>
