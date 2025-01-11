@@ -79,6 +79,10 @@ const userSlice = createSlice({
       state.userAuth.loading = false;
       
     });
+     // RESET ERROR
+     builder.addCase(resetErrorAction.pending, (state, action) => {
+      state.error = null;
+    });
 
     // REGISTER
     builder.addCase(registerUserAction.pending, (state, action) => {
@@ -92,10 +96,10 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     });
-    // RESET ERROR ACTION
-    builder.addCase(resetErrorAction.pending, (state) => {
-      state.error = null;
-    });
+    // // RESET ERROR ACTION
+    // builder.addCase(resetErrorAction.pending, (state) => {
+    //   state.error = null;
+    // });
   },
 });
 

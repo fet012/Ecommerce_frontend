@@ -85,8 +85,9 @@ const colorSlice = createSlice({
     });
     builder.addCase(fetchColorsAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.colors = action.payload;
+      state.colors = action.payload.color || []; // Use an empty array as fallback
       state.isAdded = true;
+      console.log("Redux state updated with colors:", state.colors);
     });
     builder.addCase(fetchColorsAction.rejected, (state, action) => {
       state.loading = false;
@@ -100,4 +101,4 @@ const colorSlice = createSlice({
 // GENERATE REDUCER
 const colorsReducer = colorSlice.reducer;
 
-export default colorsReducer
+export default colorsReducer;
