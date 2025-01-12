@@ -78,14 +78,14 @@ export default function ProductsFilters() {
   // BUILD UP URL
   let productUrl = `${baseURL}/products`
 
-  // FETCH ALL PRODUCTS
-  useEffect(()=> {
-    dispatch(
-      fetchProductAction({
-        url: productUrl
-      })
-    )
-  },[])
+  // // FETCH ALL PRODUCTS
+  // useEffect(()=> {
+  //   dispatch(
+  //     fetchProductAction({
+  //       url: productUrl
+  //     })
+  //   )
+  // },[])
 
 
   let colorsLoading;
