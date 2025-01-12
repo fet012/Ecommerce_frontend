@@ -153,7 +153,7 @@ export default function Product() {
                     href="#"
                     className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
                   >
-                    {product?.product?.totalReviews} total reviews
+                    {product?.totalReviews} total reviews
                   </a>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function Product() {
             <div className="mt-10">
               <h2 className="text-sm font-medium text-gray-900">Description</h2>
               <div className="prose prose-sm mt-4 text-gray-500">
-                {productDetails?.description}
+                {product?.description}
               </div>
             </div>
 
@@ -326,7 +326,7 @@ export default function Product() {
           </h2>
 
           <div className="mt-6 space-y-10 divide-y divide-gray-200 border-t border-b border-gray-200 pb-10">
-            {productDetails?.product?.reviews.map((review) => (
+            {product.reviews.map((review) => (
               <div
                 key={review._id}
                 className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8"

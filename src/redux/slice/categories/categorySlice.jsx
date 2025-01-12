@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
+import {
+  resetErrorAction,
+  resetSuccessAction,
+} from "../globalActions/globalActions";
 
 //INITIAL STATE
 const initialState = {
@@ -18,13 +22,12 @@ export const createCategoryAction = createAsyncThunk(
   "categories/createCategory",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { name, image } = payload;
+      const { name, file } = payload;
 
       // FORM DATA
       const formData = new FormData();
       formData.append("name", name);
-      formData.append("image", image);
-
+      formData.append("file", file);
 
       // TOKEN - AUTHENTICATED
       const token = getState()?.users?.userAuth?.userInfo?.token;
@@ -35,10 +38,8 @@ export const createCategoryAction = createAsyncThunk(
       };
       // IMAGES
       const { data } = await axios.post(
-        `${baseURL}/categories`,
-        {
-          name,
-        },
+        `${baseURL}/categories/createCategory`,
+        formData,
         config
       );
       return data;
@@ -90,13 +91,17 @@ const categorySlice = createSlice({
     builder.addCase(fetchCategoriesAction.fulfilled, (state, action) => {
       state.loading = false;
       state.categories = action.payload;
-      state.isAdded = true;
     });
     builder.addCase(fetchCategoriesAction.rejected, (state, action) => {
       state.loading = false;
       state.categories = null;
-      state.isAdded = false;
       state.error = action.payload;
+    });
+    builder.addCase(resetErrorAction.pending, (state, action) => {
+      state.error = null;
+    });
+    builder.addCase(resetSuccessAction.pending, (state, action) => {
+      state.error = false;
     });
   },
 });
